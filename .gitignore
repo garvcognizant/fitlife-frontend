@@ -10,6 +10,9 @@ target/
 .mvn/
 !mvnw
 !mvnw.cmd
+!.mvn/wrapper/
+!.mvn/wrapper/maven-wrapper.properties
+!.mvn/wrapper/maven-wrapper.jar
 
 # IDEs and OS
 .idea/
