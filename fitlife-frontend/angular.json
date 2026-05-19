@@ -46,8 +46,6 @@
             "outputPath": "dist/fitlife-frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "outputPath": "dist/fitlife-frontend",
-            "index": "src/index.html",
             "polyfills": [
               "zone.js"
             ],

@@ -23,8 +23,10 @@ public class UserController {
 
     @PutMapping("/profile")
     @Transactional
-    public ResponseEntity<UserDto> updateProfile(@AuthenticationPrincipal User user,
+    public ResponseEntity<UserDto> updateProfile(@AuthenticationPrincipal User principal,
                                                   @RequestBody UserDto dto) {
+        User user = userRepository.findById(principal.getId())
+                .orElseThrow(() -> new RuntimeException("User not found"));
         if (dto.getFullName() != null) user.setFullName(dto.getFullName());
         if (dto.getAge() != null) user.setAge(dto.getAge());
         if (dto.getGender() != null) user.setGender(dto.getGender());

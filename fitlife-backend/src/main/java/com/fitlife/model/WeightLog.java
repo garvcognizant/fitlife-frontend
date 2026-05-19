@@ -4,7 +4,9 @@ import lombok.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 @Entity
-@Table(name = "weight_logs")
+@Table(name = "weight_logs", indexes = {
+    @Index(name = "idx_weightlog_user_date", columnList = "user_id, date")
+})
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class WeightLog {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

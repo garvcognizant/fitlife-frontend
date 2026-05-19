@@ -57,9 +57,9 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<Map<String, String>> handleRuntime(RuntimeException ex) {
-        String message = ex.getMessage() != null ? ex.getMessage() : "An error occurred";
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(Map.of("error", message, "status", "400"));
+        String message = ex.getMessage() != null ? ex.getMessage() : "An unexpected error occurred";
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(Map.of("error", message, "status", "500"));
     }
 
     @ExceptionHandler(Exception.class)

@@ -1,6 +1,7 @@
 package com.fitlife.controller;
 
 import com.fitlife.dto.*;
+import com.fitlife.exception.BadRequestException;
 import com.fitlife.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +31,7 @@ public class AuthController {
     public ResponseEntity<Map<String, String>> getSecurityQuestion(@RequestBody Map<String, String> body) {
         String email = body.get("email");
         if (email == null || email.isBlank()) {
-            throw new RuntimeException("Email is required");
+            throw new BadRequestException("Email is required");
         }
         String question = authService.getSecurityQuestion(email);
         return ResponseEntity.ok(Map.of("securityQuestion", question));
@@ -42,9 +43,9 @@ public class AuthController {
         String securityAnswer = body.get("securityAnswer");
         String newPassword = body.get("newPassword");
 
-        if (email == null || email.isBlank()) throw new RuntimeException("Email is required");
-        if (securityAnswer == null || securityAnswer.isBlank()) throw new RuntimeException("Security answer is required");
-        if (newPassword == null || newPassword.length() < 6) throw new RuntimeException("Password must be at least 6 characters");
+        if (email == null || email.isBlank()) throw new BadRequestException("Email is required");
+        if (securityAnswer == null || securityAnswer.isBlank()) throw new BadRequestException("Security answer is required");
+        if (newPassword == null || newPassword.length() < 6) throw new BadRequestException("Password must be at least 6 characters");
 
         authService.verifySecurityAnswerAndResetPassword(email, securityAnswer, newPassword);
         return ResponseEntity.ok(Map.of("message", "Password reset successfully."));

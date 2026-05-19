@@ -117,7 +117,7 @@ export class DashboardComponent implements OnInit {
     effect(() => {
       this.dataLoaded(); // subscribe to changes
       this.insightsService.generateInsights();
-    });
+    }, { allowSignalWrites: true });
   }
 
   ngOnInit(): void {

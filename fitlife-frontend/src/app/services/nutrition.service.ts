@@ -75,7 +75,7 @@ export class NutritionService {
           fat: macros.fat
         });
       }
-    });
+    }, { allowSignalWrites: true });
   }
 
   /** Loads today's meals only (daily reset) */

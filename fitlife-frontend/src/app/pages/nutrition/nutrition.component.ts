@@ -85,7 +85,9 @@ export class NutritionComponent implements OnInit {
       await this.nutritionService.addMeal(this.form);
       this.toastService.success('Meal logged successfully ✅');
       this.closeModal();
-    } catch { this.toastService.error('Failed to save meal'); }
+    } catch {
+      // Error toast is already shown by the service
+    }
   }
 
   deleteMeal(id: number): void {

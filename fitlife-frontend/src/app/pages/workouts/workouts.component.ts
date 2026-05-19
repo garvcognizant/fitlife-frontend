@@ -80,26 +80,23 @@ export class WorkoutsComponent implements OnInit {
     if (this.fieldVisibility.duration && this.form.exerciseType === 'Cardio' && (!this.form.durationMin || this.form.durationMin <= 0))
       this.errors['duration'] = 'Duration is required for cardio';
     if (!this.form.caloriesBurned || this.form.caloriesBurned <= 0)
-      this.errors['calories'] = 'Calories burned is required â€” enter the value from your fitness device';
+      this.errors['calories'] = 'Calories burned is required — enter the value from your fitness device';
     if (Object.keys(this.errors).length > 0) return;
 
     try {
       if (this.editingId) {
         await this.workoutService.updateWorkout(this.editingId, this.form);
-        this.toastService.success('Workout updated successfully');
       } else {
         await this.workoutService.addWorkout(this.form);
-        this.toastService.success('Workout logged successfully');
       }
       this.closeModal();
     } catch {
-      this.toastService.error('Failed to save workout');
+      // Error toast already shown by service
     }
   }
 
   deleteWorkout(id: number): void {
     this.workoutService.deleteWorkout(id);
-    this.toastService.info('Workout deleted');
   }
 
   private resetForm(): void {

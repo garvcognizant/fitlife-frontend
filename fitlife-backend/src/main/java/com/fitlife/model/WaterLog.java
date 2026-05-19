@@ -6,7 +6,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "water_logs")
+@Table(name = "water_logs", indexes = {
+    @Index(name = "idx_water_user_date", columnList = "user_id, date")
+})
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class WaterLog {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

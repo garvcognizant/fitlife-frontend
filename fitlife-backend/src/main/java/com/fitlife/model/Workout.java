@@ -5,7 +5,9 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "workouts")
+@Table(name = "workouts", indexes = {
+    @Index(name = "idx_workout_user_date", columnList = "user_id, date")
+})
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class Workout {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
