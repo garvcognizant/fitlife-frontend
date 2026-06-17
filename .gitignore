@@ -42,3 +42,6 @@ logs/
 # OS files
 desktop.ini
 ehthumbs.db
+
+# Senstive Files
+aiven-details.md
